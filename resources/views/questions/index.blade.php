@@ -11,7 +11,12 @@
                    @foreach ($questions as $item)
                        <div class="media">
                            <div class="media-body">
-                                <h3 class="mt-0">{{ $item->title }}</h3>
+                               <a href="{{ $item->url }}"><h3 class="mt-0">{{ $item->title }}</h3></a>
+                               <p class="lead">
+                                   Asked by
+                                    <a href="{{ $item->user->url }}">{{ $item->user->name }}</a>
+                                    <small class="text-muted">{{ $item->created_date }}</small>
+                               </p>
                                 {!! Illuminate\Support\Str::limit($item->body,250) !!}
                            </div>
                        </div>
