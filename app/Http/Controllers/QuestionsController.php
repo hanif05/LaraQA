@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class QuestionsController extends Controller
 {
@@ -16,8 +15,6 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::latest()->paginate(5);
-        // $body_limit = Str::limit($questions->body, 100);
-        // dd($questions);
 
         return view('questions.index', compact('questions'));
     }
