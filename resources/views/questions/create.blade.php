@@ -19,7 +19,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="questions-title">Questions Title</label>
-                            <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" id="question-title">
+                            <input type="text" name="title" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }} {{ Request::old('title') ? 'is-valid' : '' }}" id="question-title" value="{{ Request::old('title') }}">
 
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
