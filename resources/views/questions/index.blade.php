@@ -10,6 +10,17 @@
                 <div class="card-body">
                    @foreach ($questions as $item)
                        <div class="media">
+                           <div class="d-flex flex-column counters">
+                                <div class="vote">
+                                    <strong>{{ $item->votes }}</strong> {{ Illuminate\Support\Str::plural('vote', $item->votes) }}
+                                </div>
+                                <div class="status">
+                                    <strong>{{ $item->answers }}</strong> {{ Illuminate\Support\Str::plural('answer', $item->answers) }}
+                                </div>
+                                <div class="view">
+                                    {{ $item->views ." ". Illuminate\Support\Str::plural('view', $item->views) }}
+                                </div>
+                           </div>
                            <div class="media-body">
                                <a href="{{ $item->url }}"><h3 class="mt-0">{{ $item->title }}</h3></a>
                                <p class="lead">
