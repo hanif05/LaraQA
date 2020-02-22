@@ -30,7 +30,12 @@
                                 </div>
                            </div>
                            <div class="media-body">
-                               <a href="{{ $item->url }}"><h3 class="mt-0">{{ $item->title }}</h3></a>
+                               <div class="d-flex align-items-center">
+                                   <a href="{{ $item->url }}"><h3 class="mt-0">{{ $item->title }}</h3></a>
+                                   <div class="ml-auto">
+                                       <a href="{{ route('questions.edit', $item->id) }}" class="btn btn-outline-info btn-sm">Edit Question</a>
+                                   </div>
+                               </div>
                                <p class="lead">
                                    Asked by
                                     <a href="{{ $item->user->url }}">{{ $item->user->name }}</a>
