@@ -5,29 +5,46 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex align-items-center">
-                        <h1>{{ $question->title }}</h1>
-                        <div class="ml-auto">
-                            <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary">Back</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    {!! $question->body_html !!}
-                    <div class="float-right">
-                        <span class="text-muted">Question {{ $question->created_at->diffForHumans() }}</span>
-                        <div class="media mt-2">
-                            <a href="{{ $question->user->url }}" class="pr-2">
-                                <img src="{{ $question->user->avatar }}" alt="" srcset="">
-                            </a>
-                            <div class="media-body mt-1">
-                                <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+               <div class="card-body">
+                    <div class="card-title">
+                        <div class="d-flex align-items-center">
+                            <h1>{{ $question->title }}</h1>
+                            <div class="ml-auto">
+                                <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary">Back</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <hr>
+                    <div class="media">
+                        <div class="d-fex flex-column votes-control">
+                            <a href="#" title="This question is useful" class="vote-up">
+                                Votes
+                            </a>
+                            <span class="votes-count">123</span>
+                            <a href="#" title="This question not useful" class="vote-down off">
+                                Votes Down
+                            </a>
+                            <a href="#" class="favorite" title="Click to mark ass favorite question (Click again to undo)">
+                                Favorite
+                                <span class="favorites-count">12</span>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            {!! $question->body_html !!}
+                            <div class="float-right">
+                                <span class="text-muted">Question {{ $question->created_at->diffForHumans() }}</span>
+                                <div class="media mt-2">
+                                    <a href="{{ $question->user->url }}" class="pr-2">
+                                        <img src="{{ $question->user->avatar }}" alt="" srcset="">
+                                    </a>
+                                    <div class="media-body mt-1">
+                                        <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
             </div>
         </div>
     </div>
