@@ -18,14 +18,14 @@
                     <div class="media">
                         <div class="d-fex flex-column votes-control">
                             <a href="#" title="This question is useful" class="vote-up">
-                                Votes
+                                <i class="fa fa-caret-up fa-3x"></i>
                             </a>
                             <span class="votes-count">123</span>
                             <a href="#" title="This question not useful" class="vote-down off">
-                                Votes Down
+                                <i class="fa fa-caret-down fa-3x"></i>
                             </a>
-                            <a href="#" class="favorite" title="Click to mark ass favorite question (Click again to undo)">
-                                Favorite
+                            <a href="#" class="favorite mt-2 favorited" title="Click to mark as favorite question (Click again to undo)">
+                                <i class="fa fa-star fa-2x"></i>
                                 <span class="favorites-count">12</span>
                             </a>
                         </div>
@@ -59,6 +59,18 @@
 
                     @foreach ($question->answers as $answer)
                         <div class="media">
+                            <div class="d-fex flex-column votes-control">
+                                <a href="#" title="This answer is useful" class="vote-up">
+                                    <i class="fa fa-caret-up fa-3x"></i>
+                                </a>
+                                <span class="votes-count">123</span>
+                                <a href="#" title="This answer not useful" class="vote-down off">
+                                    <i class="fa fa-caret-down fa-3x"></i>
+                                </a>
+                                <a href="#" class="favorite mt-2 votes-accepted" title="Click this to mark as favorite answer">
+                                    <i class="fa fa-check fa-2x"></i>
+                                </a>
+                            </div>
                             <div class="media-body">
                                 {!! $answer->body_html !!}
                                 <div class="float-right">
