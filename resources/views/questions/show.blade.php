@@ -49,5 +49,6 @@
         </div>
     </div>
     @include('answers._index', ['answers' => $question->answers, 'answersCount' => $question->answer_count])
+    @include('answers._create', ['question' => $question])
 </div>
 @endsection
