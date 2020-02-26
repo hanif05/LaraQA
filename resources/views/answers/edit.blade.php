@@ -25,6 +25,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-outline-primary btn-lg">Update</button>
+                            <a href="{{ route('questions.show', $question->slug) }}" class="btn btn-outline-secondary btn-lg">Back</a>
                         </div>
                     </form>
                 </div>
