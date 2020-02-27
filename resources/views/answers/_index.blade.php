@@ -36,7 +36,7 @@
                                             <form class="form-delete" action="{{ route('questions.answers.destroy', [ $question->id , $answer->id ]) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are You Sure Want Delete This Question?')">Delete</button>
+                                                <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are You Sure Want Delete This Answer?')">Delete</button>
                                             </form>
                                         @endcan
                                     </div>                                    
