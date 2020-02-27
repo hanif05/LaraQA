@@ -23,6 +23,11 @@ class Answer extends Model
         return \Parsedown::instance()->text($this->body);
     }
 
+    public function getStatusAttribute()
+    {
+        return $this->question->best_answer_id == $this->id ? 'votes-accepted' : '';
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -31,7 +36,12 @@ class Answer extends Model
             $answer->question->increment('answers_count'); //increase answers_count every time answers create
         });
         static::deleted(function ($answer) {
-            $answer->question->decrement('answers_count'); // decrease answers_count every time answer deleted
+            $question = $answer->question;
+            $question->decrement('answers_count'); // decrease answers_count every time answer deleted
+            if ($question->best_answer_id == $answer->id) {
+                $question->best_answer_id = NULL;
+                $question->save();
+            }
         });
     }
 }
