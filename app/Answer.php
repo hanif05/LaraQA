@@ -18,6 +18,11 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
+    public function isBest()
+    {
+        return $this->question->best_answer_id == $this->id;
+    }
+
     public function getBodyHtmlAttribute()
     {
         return \Parsedown::instance()->text($this->body);
@@ -25,7 +30,12 @@ class Answer extends Model
 
     public function getStatusAttribute()
     {
-        return $this->question->best_answer_id == $this->id ? 'votes-accepted' : '';
+        return  $this->isBest() ? 'votes-accepted' : '';
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
     }
 
     public static function boot()
