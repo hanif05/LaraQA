@@ -19,9 +19,14 @@
                             <a href="#" title="This answer not useful" class="vote-down off">
                                 <i class="fa fa-caret-down fa-3x"></i>
                             </a>
-                            <a href="#" class="favorite mt-2 {{ $answer->status }}" title="Click this to mark as favorite answer">
+                            <a class="favorite mt-2 {{ $answer->status }}" title="Click this to mark as favorite answer"
+                                onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit()"
+                                >
                                 <i class="fa fa-check fa-2x"></i>
                             </a>
+                            <form action="{{ route('answers.accept', $answer->id) }}" id="accept-answer-{{ $answer->id }}" method="POST" style="display:none">
+                                @csrf
+                            </form>
                         </div>
                         <div class="media-body">
                             {!! $answer->body_html !!}
