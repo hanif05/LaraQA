@@ -19,6 +19,11 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
     public function acceptBestAnswer(Answer $answer)
     {
         $this->best_answer_id = $answer->id;
