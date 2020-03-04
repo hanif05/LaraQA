@@ -30,6 +30,21 @@ class Question extends Model
         $this->save();
     }
 
+    public function isFavorited()
+    {
+        return  $this->favorites()->where('user_id', auth()->user()->id)->count() > 0;
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
+    public function getFavoritesCountAttribute()
+    {
+        return $this->favorites->count();
+    }
+
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
