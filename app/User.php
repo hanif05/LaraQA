@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->belongsToMany(Question::class, 'favorites');
+        return $this->belongsToMany(Question::class, 'favorites')->withTimestamps();
     }
 
     public function getUrlAttribute()
