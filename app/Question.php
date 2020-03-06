@@ -24,6 +24,11 @@ class Question extends Model
         return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
 
+    public function votes()
+    {
+        return $this->morphToMany(User::class, 'votable');
+    }
+
     public function acceptBestAnswer(Answer $answer)
     {
         $this->best_answer_id = $answer->id;
