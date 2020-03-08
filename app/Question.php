@@ -120,7 +120,7 @@ class Question extends Model
      */
     public function upVotes()
     {
-        $this->votes()->wherePivot('vote', 1);
+        return $this->votes()->wherePivot('vote', 1);
     }
     
     /**
