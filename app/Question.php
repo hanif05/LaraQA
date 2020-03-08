@@ -76,7 +76,11 @@ class Question extends Model
      */
     public function isFavorited()
     {
-        return $this->favorites()->where('user_id', auth()->user()->id)->count() > 0;
+        if (auth()->id()) {
+            
+            return $this->favorites()->where('user_id', auth()->user()->id)->count() > 0;
+        }
+        return 0;
     }
     
     /**
