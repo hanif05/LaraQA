@@ -80,7 +80,7 @@ class Question extends Model
             
             return $this->favorites()->where('user_id', auth()->user()->id)->count() > 0;
         }
-        return 0;
+        return false;
     }
     
     /**
