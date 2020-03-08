@@ -12,13 +12,23 @@
                 @foreach ($answers as $answer)
                     <div class="media">
                         <div class="d-fex flex-column votes-control">
-                            <a href="#" title="This answer is useful" class="vote-up">
+                            <a href="#" title="This answer is useful" class="vote-up {{ Auth::guest() ? 'off' : '' }}"
+                                onclick="event.preventDefault(); document.getElementById('answer-upvote-{{ $answer->id }}').submit()">
                                 <i class="fa fa-caret-up fa-3x"></i>
                             </a>
-                            <span class="votes-count">123</span>
-                            <a href="#" title="This answer not useful" class="vote-down off">
+                            <form action="{{ route('answers.votes', $answer->id) }}" id="answer-upvote-{{ $answer->id }}" method="POST" style="display:none">
+                                @csrf
+                                <input type="hidden" name="vote" value="1">
+                            </form>
+                            <span class="votes-count">{{ $answer->votes_count }}</span>
+                            <a href="#" title="This answer not useful" class="vote-down {{ Auth::guest() ? 'off' : '' }}"
+                                onclick="event.preventDefault(); document.getElementById('answer-downvote-{{ $answer->id }}').submit()">
                                 <i class="fa fa-caret-down fa-3x"></i>
                             </a>
+                            <form action="{{ route('answers.votes', $answer->id) }}" id="answer-downvote-{{ $answer->id }}" method="POST" style="display:none">
+                                @csrf
+                                <input type="hidden" name="vote" value="-1">
+                            </form>
                             @can('accept', $answer)
                                 <a class="favorite mt-2 {{ $answer->status }}" title="Click this to mark as favorite answer"
                                     onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit()"
