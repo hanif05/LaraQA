@@ -87,7 +87,7 @@ class User extends Authenticatable
      */
     public function voteAnswers()
     {
-        return $this->morphedByMany(Answers::class, 'votable');
+        return $this->morphedByMany(Answer::class, 'votable');
     }
     
     /**
