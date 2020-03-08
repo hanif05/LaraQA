@@ -57,6 +57,26 @@ class Answer extends Model
     }
     
     /**
+     * Answer::downVote
+     *
+     * @return mixed
+     */
+    public function downVotes()
+    {
+        return $this->votes()->wherePivot('vote', -1);
+    }
+    
+    /**
+     * Answer::upVote
+     *
+     * @return mixed
+     */
+    public function upVotes()
+    {
+        return $this->votes()->wherePivot('vote', 1);
+    }
+    
+    /**
      * Answer::getBodyHtmlAttribute
      *
      * @return string
