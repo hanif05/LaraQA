@@ -7,7 +7,12 @@ use App\Question;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
-{
+{    
+    /**
+     * __construct this is middleware auth
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);

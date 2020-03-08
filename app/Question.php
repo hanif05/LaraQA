@@ -104,6 +104,26 @@ class Question extends Model
     }
     
     /**
+     * Question::downVotes
+     *
+     * @return mixed
+     */
+    public function downVotes()
+    {
+        return $this->votes()->wherePivot('vote', -1);
+    }
+    
+    /**
+     * Question::upVotes
+     *
+     * @return mixed
+     */
+    public function upVotes()
+    {
+        $this->votes()->wherePivot('vote', 1);
+    }
+    
+    /**
      * Question::setTitleAttribute
      *
      * @param  mixed $value
