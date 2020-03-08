@@ -91,6 +91,32 @@ class User extends Authenticatable
     }
     
     /**
+     * User::voteQuestion this is logic for vote question
+     *
+     * @param  App\Question $question
+     * @param  mixed $vote
+     * @return void
+     */
+    public function voteQuestion(Question $question, $vote)
+    {
+        $voteQuestions = $this->voteQuestions();
+
+        if ($voteQuestions->where('votable_id', $question->id)->exists()) {
+            $voteQuestions->updateExistingPivot($question, ['vote' => $vote]);
+        } else {
+            $voteQuestions->attach($question, ['vote', $vote]);
+        }
+
+        $question->load('votes');
+        $downVotes = (int) $question->downVotes()->sum('vote');
+        $upVotes = (int) $question->upVotes()->sum('vote');
+
+        $question->votes_count = $upVotes + $downVotes;
+        $question->save();
+
+    }
+    
+    /**
      * User::getUrlAttribute
      *
      * @return string
