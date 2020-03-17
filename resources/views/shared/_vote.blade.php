@@ -36,7 +36,7 @@
         ])
     @elseif($model instanceof App\Answer)
         @include('shared._acceptAnswer', [
-            'model' => $answer
+            'model' => $model
         ])
     @endif
 </div>
