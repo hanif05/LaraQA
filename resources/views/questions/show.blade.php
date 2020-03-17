@@ -16,37 +16,10 @@
                     </div>
                     <hr>
                     <div class="media">
-                        <div class="d-fex flex-column votes-control">
-                            <a href="#" title="This question is useful" class="vote-up {{ Auth::guest() ? 'off' : '' }}"
-                                onclick="event.preventDefault(); document.getElementById('question-upvote-{{ $question->id }}').submit()">
-                                <i class="fa fa-caret-up fa-3x"></i>
-                            </a>
-                            <form action="{{ route('questions.votes', $question->id) }}" id="question-upvote-{{ $question->id }}" method="POST" style="display:none">
-                                @csrf
-                                <input type="hidden" name="vote" value="1">
-                            </form>
-                            <span class="votes-count">{{ $question->votes_count }}</span>
-                            <a href="#" title="This question not useful" class="vote-down {{ Auth::guest() ? 'off' : '' }}"
-                                onclick="event.preventDefault(); document.getElementById('question-downvote-{{ $question->id }}').submit()">
-                                <i class="fa fa-caret-down fa-3x"></i>
-                            </a>
-                            <form action="{{ route('questions.votes', $question->id) }}" id="question-downvote-{{ $question->id }}" method="POST" style="display:none">
-                                @csrf
-                                <input type="hidden" name="vote" value="-1">
-                            </form>
-                            <a href="#" class="favorite mt-2 {{ Auth::guest() ? 'off' : ($question->is_favorited ? 'favorited' : '') }}" title="Click to mark as favorite question (Click again to undo)"
-                                onclick="event.preventDefault(); document.getElementById('favorite-question-{{ $question->id }}').submit()">
-                                <i class="fa fa-star fa-2x"></i>
-                                <span class="favorites-count">{{ $question->favorites_count }}</span>
-                                {{-- $question->favorites_count same with $question->favorites()->count() --}}
-                            </a>
-                            <form action="/questions/{{ $question->id }}/favorites" id="favorite-question-{{ $question->id }}" method="POST" style="display:none">
-                                @csrf
-                                @if ($question->is_favorited)
-                                    @method('DELETE')
-                                @endif
-                            </form>
-                        </div>
+                        @include('shared._vote', [
+                            'model' => $question
+                        ])
+                        
                         <div class="media-body">
                             {!! $question->body_html !!}
                             <div class="row">
