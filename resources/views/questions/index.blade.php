@@ -51,7 +51,9 @@
                                     <a href="{{ $item->user->url }}">{{ $item->user->name }}</a>
                                     <small class="text-muted">{{ $item->created_date }}</small>
                                </p>
-                                {!! Illuminate\Support\Str::limit($item->body,250) !!}
+                               <div class="excrept">
+                                   {!! Illuminate\Support\Str::limit(strip_tags($item->body_html),250) !!}
+                               </div>
                            </div>
                        </div>
                        <hr>
