@@ -18,6 +18,15 @@ class Question extends Model
     protected $fillable = ['title', 'body'];
     
     /**
+     * append
+     *
+     * @var array
+     */
+    protected $appends = [
+        'created_date'
+    ];
+    
+    /**
      * Question::user
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo

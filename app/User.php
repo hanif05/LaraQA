@@ -41,6 +41,15 @@ class User extends Authenticatable
     ];
     
     /**
+     * append
+     *
+     * @var array
+     */
+    protected $appends = [
+        'url', 'avatar'
+    ];
+    
+    /**
      * User::questions
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany

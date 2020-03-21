@@ -17,6 +17,13 @@ class Answer extends Model
     protected $fillable = ['body', 'user_id'];
     
     /**
+     * appends
+     *
+     * @var array
+     */
+    protected $appends = ['created_date'];
+    
+    /**
      * Answer::user
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -104,6 +111,16 @@ class Answer extends Model
     public function getIsBestAttribute()
     {
         return $this->isBest();
+    }
+
+    /**
+    * Answer::getCreatedDateAttribute
+    *
+    * @return mixed
+    */
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
     }
     
     /**
